@@ -1,0 +1,2414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>INNOVA.GLOBAL</title>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,Helvetica,sans-serif}
+
+body{
+ min-height:100vh;
+ color:#f6d889;
+ background:
+ radial-gradient(circle at 18% 18%,rgba(132,56,180,.40),transparent 35%),
+ radial-gradient(circle at 82% 72%,rgba(245,190,55,.24),transparent 36%),
+ linear-gradient(135deg,#08040f,#1b092d 46%,#07030c);
+ background-attachment:fixed;
+}
+
+@keyframes colors{
+ 0%{color:#f6d889}
+ 14%{color:#d8b4f0}
+ 28%{color:#eeaeca}
+ 42%{color:#8edee4}
+ 56%{color:#b8e29f}
+ 70%{color:#edaaaa}
+ 84%{color:#9ebdf2}
+ 100%{color:#f6d889}
+}
+
+.animate{animation:colors 8s infinite}
+
+header{
+ display:none;
+ position:sticky;
+ top:0;
+ z-index:100;
+ height:64px;
+ padding:9px 13px;
+ align-items:center;
+ justify-content:space-between;
+ background:rgba(8,4,18,.92);
+ border-bottom:1px solid rgba(246,216,137,.25);
+ backdrop-filter:blur(14px)
+}
+
+.icon{
+ width:44px;height:44px;
+ border:1px solid rgba(246,216,137,.35);
+ border-radius:11px;
+ background:rgba(255,255,255,.05);
+ color:#f6d889;
+ font-size:21px;
+ cursor:pointer
+}
+
+.logo{font-weight:bold;font-size:18px}
+
+main{max-width:620px;margin:auto;padding:18px 14px 60px}
+
+.page{display:none}
+.page.active{display:block}
+
+.hero{
+ min-height:calc(100vh - 36px);
+ display:flex;
+ flex-direction:column;
+ justify-content:center;
+ align-items:center;
+ text-align:center
+}
+
+.bismillah{font-size:20px;margin-bottom:25px}
+
+.hero h1{font-size:35px;margin:8px 0}
+.hero h2{font-size:21px;margin-bottom:22px}
+
+.card{
+ background:rgba(12,7,25,.75);
+ border:1px solid rgba(246,216,137,.27);
+ border-radius:16px;
+ padding:18px;
+ margin:13px 0;
+ box-shadow:0 8px 30px rgba(0,0,0,.28);
+ backdrop-filter:blur(10px)
+}
+
+button{
+ width:100%;
+ padding:14px;
+ border:0;
+ border-radius:11px;
+ margin:7px 0;
+ cursor:pointer;
+ font-weight:bold;
+ font-size:15px;
+ color:white;
+ background:linear-gradient(100deg,#9657d9,#e0a92d)
+}
+
+button:disabled{opacity:.5;cursor:not-allowed}
+
+.secondary{
+ background:rgba(255,255,255,.055);
+ border:1px solid rgba(246,216,137,.28)
+}
+
+input,select{
+ width:100%;
+ padding:13px;
+ margin:7px 0 12px;
+ border-radius:10px;
+ border:1px solid rgba(246,216,137,.25);
+ background:rgba(0,0,0,.38);
+ color:white;
+ outline:none
+}
+
+option{background:#171020}
+
+label{
+ display:block;
+ margin-top:7px;
+ margin-bottom:2px;
+ color:#ddd;
+ font-size:13px
+}
+
+.title{
+ text-align:center;
+ font-size:25px;
+ margin:14px 0 20px
+}
+
+.row{
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ gap:10px;
+ padding:9px 0;
+ border-bottom:1px solid rgba(255,255,255,.07)
+}
+
+.row:last-child{border-bottom:0}
+
+.stats{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:10px
+}
+
+.stat{
+ padding:16px;
+ border-radius:13px;
+ background:rgba(255,255,255,.045);
+ border:1px solid rgba(246,216,137,.20)
+}
+
+.stat .number{
+ text-align:right;
+ font-size:21px;
+ margin-top:8px;
+ font-weight:bold
+}
+
+.profile{
+ display:flex;
+ align-items:center;
+ gap:14px
+}
+
+.avatar{
+ width:72px;
+ height:72px;
+ border-radius:50%;
+ object-fit:cover;
+ border:2px solid #dcb34e;
+ background:#21102f
+}
+
+.profileInfo{flex:1}
+
+.green{color:#8fe388}
+.red{color:#ef8888}
+.yellow{color:#f6d889}
+.cyan{color:#8edee4}
+
+.menu{
+ display:none;
+ position:fixed;
+ top:64px;
+ left:0;
+ z-index:90;
+ width:270px;
+ height:calc(100vh - 64px);
+ padding:14px;
+ background:rgba(8,4,18,.98);
+ border-right:1px solid rgba(246,216,137,.2)
+}
+
+.menu.open{display:block}
+
+.menu button{
+ text-align:left;
+ background:rgba(255,255,255,.05);
+ border:1px solid rgba(246,216,137,.13)
+}
+
+.progress{
+ width:100%;
+ height:8px;
+ border-radius:20px;
+ background:#281934;
+ overflow:hidden;
+ margin:12px 0
+}
+
+.progress div{
+ height:100%;
+ width:0;
+ background:linear-gradient(90deg,#d9ad39,#a45ce5,#ef9ebf)
+}
+
+.timer{
+ font-size:45px;
+ font-weight:bold;
+ margin:20px
+}
+
+.notice{
+ padding:12px;
+ border-radius:10px;
+ background:rgba(255,255,255,.05);
+ margin:8px 0
+}
+
+.program h3{margin-bottom:8px}
+
+.footer{
+ margin-top:22px;
+ color:#aaa;
+ font-size:12px;
+ text-align:center
+}
+
+.small{font-size:12px;color:#aaa}
+
+.badge{
+ display:inline-block;
+ padding:5px 9px;
+ border-radius:20px;
+ font-size:12px;
+ background:rgba(255,255,255,.06)
+}
+
+a{text-decoration:none}
+
+@media(max-width:420px){
+ .hero h1{font-size:29px}
+ .hero h2{font-size:18px}
+ .title{font-size:22px}
+}
+</style>
+</head>
+
+<body>
+
+<header id="header">
+ <button class="icon" onclick="toggleMenu()">☰</button>
+ <div class="logo animate">INNOVA.GLOBAL</div>
+ <button class="icon" onclick="showPage('settings')">⚙️</button>
+</header>
+
+<div id="menu" class="menu">
+ <button onclick="go('dashboard')">🏠 Dashboard</button>
+ <button onclick="go('wallet')">💰 Wallet</button>
+ <button onclick="go('history')">📜 History</button>
+ <button onclick="go('notifications')">🔔 Notifications</button>
+ <button onclick="go('team')">👥 Team</button>
+ <button id="adminButton" onclick="go('admin')" style="display:none">👑 Admin Panel</button>
+ <button onclick="logout()">🚪 Logout</button>
+</div>
+
+<main>
+
+<!-- WELCOME -->
+<section id="welcome" class="page active">
+<div class="hero">
+
+ <div class="bismillah animate">
+ بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ
+ </div>
+
+ <div class="animate" style="font-size:27px">✨ WELCOME ✨</div>
+
+ <h1 class="animate">🌐 INNOVA.GLOBAL</h1>
+
+ <h2 class="animate">WELCOME TO INNOVA.GLOBAL</h2>
+
+ <button onclick="showPage('register')">
+ 🚀 JOIN INNOVA.GLOBAL
+ </button>
+
+ <button class="secondary" onclick="showPage('login')">
+ 🔐 LOGIN
+ </button>
+
+ <div class="card" style="width:100%">
+
+  <div class="row">
+   <span>👥 TOTAL PARTNERS</span>
+   <b id="wPartners">000</b>
+  </div>
+
+  <div class="row">
+   <span>💰 TOTAL EARNINGS</span>
+   <b id="wEarnings">৳000</b>
+  </div>
+
+  <div class="row">
+   <span>📝 TOTAL JOINING</span>
+   <b id="wJoining">000</b>
+  </div>
+
+  <div class="row">
+   <span>📅 TODAY'S JOINING</span>
+   <b id="wToday">000</b>
+  </div>
+
+ </div>
+
+ <a href="https://www.youtube.com/@PowerNetwork7X" target="_blank">
+  <button>📺 OFFICIAL YOUTUBE CHANNEL</button>
+ </a>
+
+ <a href="https://t.me/powernetwork7xofficialchannel?livestream=6e9d38234ee3ebd233" target="_blank">
+  <button>📢 OFFICIAL TELEGRAM CHANNEL</button>
+ </a>
+
+ <a href="https://t.me/parvez7xtm" target="_blank">
+  <button>👤 CONTACT REAL ADMIN</button>
+ </a>
+
+ <div class="footer">
+  JOINING STARTED — 11 September 2026
+ </div>
+
+</div>
+</section>
+
+
+<!-- REGISTER -->
+<section id="register" class="page">
+<h2 class="title animate">🚀 JOIN INNOVA.GLOBAL</h2>
+
+<div class="card">
+
+<label>👤 Full Name</label>
+<input id="regName" placeholder="Enter your name">
+
+<label>📱 Mobile Number</label>
+<input id="regMobile" placeholder="01XXXXXXXXX">
+
+<label>🔐 Password</label>
+<input id="regPassword" type="password" placeholder="Create password">
+
+<label>🔗 Referral ID</label>
+<input id="regReferral" placeholder="First ID does not require referral">
+
+<div class="notice small">
+🥇 The first registered account becomes INNOVA ID 001.
+<br><br>
+🔗 ID 001 does not require a Referral ID.
+<br><br>
+👥 From ID 002 onward, a valid existing Referral ID is required.
+</div>
+
+<button onclick="registerUser()">🚀 CREATE ACCOUNT</button>
+
+<button class="secondary" onclick="showPage('login')">
+Already have an account? LOGIN
+</button>
+
+</div>
+</section>
+
+
+<!-- LOGIN -->
+<section id="login" class="page">
+<h2 class="title animate">🔐 LOGIN</h2>
+
+<div class="card">
+
+<label>🆔 INNOVA ID / Mobile</label>
+<input id="loginKey" placeholder="001 or mobile">
+
+<label>🔐 Password</label>
+<input id="loginPassword" type="password" placeholder="Password">
+
+<button onclick="loginUser()">🔐 LOGIN</button>
+
+<button class="secondary" onclick="showPage('register')">
+🚀 CREATE NEW ACCOUNT
+</button>
+
+</div>
+</section>
+
+
+<!-- PROFILE -->
+<section id="profile" class="page">
+<h2 class="title animate">👤 PROFILE</h2>
+
+<div class="card">
+ <div class="profile">
+  <img id="avatar" class="avatar"
+  src="https://via.placeholder.com/100/21102f/f6d889?text=USER">
+
+  <div class="profileInfo">
+   <h2 id="userName" class="animate">USER</h2>
+   <div>INNOVA ID: <b id="userId">000</b></div>
+   <div>STATUS: <b id="userStatus">🔴 INACTIVE</b></div>
+   <div>UPLINE ID: <b id="userUpline">NONE</b></div>
+  </div>
+ </div>
+</div>
+
+<div class="stats">
+
+ <div class="stat">
+  👥 PARTNERS
+  <div class="number" id="partners">000</div>
+ </div>
+
+ <div class="stat">
+  👨‍👩‍👧 TEAM
+  <div class="number" id="teamCount">000</div>
+ </div>
+
+ <div class="stat">
+  💰 EARNINGS
+  <div class="number" id="earnings">৳000</div>
+ </div>
+
+ <div class="stat" onclick="showPage('withdraw')" style="cursor:pointer">
+  💸 WITHDRAW
+  <div class="number" id="withdrawAmountProfile">৳000</div>
+ </div>
+
+</div>
+
+<div class="card">
+<h3>📋 EARNING SUMMARY</h3>
+
+<div class="row">
+ <span>💰 TOTAL EARNING</span>
+ <b id="totalEarning">৳000</b>
+</div>
+
+<div class="row">
+ <span>📅 TODAY'S EARNING</span>
+ <b>৳000</b>
+</div>
+
+<div class="row">
+ <span>🤝 REFERRAL EARNING</span>
+ <b>৳000</b>
+</div>
+
+<div class="row">
+ <span>🎬 ACTIVITY EARNING</span>
+ <b>৳000</b>
+</div>
+
+</div>
+
+<button onclick="showPage('profileMore')">
+ 📋 SHOW MORE
+</button>
+
+<button class="secondary" onclick="logout()">
+ 🚪 LOGOUT
+</button>
+
+</section>
+
+
+<!-- PROFILE MORE -->
+<section id="profileMore" class="page">
+<h2 class="title animate">📋 ACCOUNT DETAILS</h2>
+
+<div class="card">
+
+<div class="row">
+ <span>🆔 INNOVA ID</span>
+ <b id="moreId">000</b>
+</div>
+
+<div class="row">
+ <span>🔗 UPLINE ID</span>
+ <b id="moreUpline">NONE</b>
+</div>
+
+<h3 style="margin-top:18px">
+🔗 MY REFERRAL LINK
+</h3>
+
+<input id="refLink" readonly>
+
+<button onclick="copyReferral()">📋 COPY LINK</button>
+
+<div class="row">
+ <span>📅 JOINING DATE</span>
+ <b>11 September 2026</b>
+</div>
+
+<div class="row">
+ <span>⏰ JOINING TIME</span>
+ <b id="joinTime">--:--</b>
+</div>
+
+<div class="row">
+ <span>📆 JOINING DURATION</span>
+ <b id="duration">0 Days</b>
+</div>
+
+</div>
+
+<button class="secondary" onclick="showPage('profile')">
+← BACK
+</button>
+</section>
+
+
+<!-- DASHBOARD -->
+<section id="dashboard" class="page">
+<h2 class="title animate">🏠 DASHBOARD</h2>
+
+<div class="card">
+
+<div class="row">
+ <span>🆔 INNOVA ID</span>
+ <b id="dashId">000</b>
+</div>
+
+<div class="row">
+ <span>🔗 UPLINE ID</span>
+ <b id="dashUpline">NONE</b>
+</div>
+
+<div class="row">
+ <span>STATUS</span>
+ <b id="dashStatus">🔴 INACTIVE</b>
+</div>
+
+</div>
+
+
+<div class="card">
+<h3>🔐 ID ACTIVATION</h3>
+
+<p style="margin:10px 0">
+Activation Fee: <b>৳100</b>
+</p>
+
+<div id="activationBox"></div>
+</div>
+
+
+<h2 class="title animate">📦 INNOVA PROGRAMS</h2>
+
+<div id="programList"></div>
+
+<button class="secondary" onclick="showPage('profile')">
+← PROFILE
+</button>
+
+</section>
+
+
+<!-- ACTIVATION -->
+<section id="activation" class="page">
+<h2 class="title animate">🔐 ID ACTIVATION</h2>
+
+<div class="card">
+
+<p>Activation Fee: <b>৳100</b></p>
+
+<p style="margin-top:10px">
+💳 bKash / Nagad:
+<b>01313213083</b>
+</p>
+
+<label>Payment Method</label>
+<select id="activationMethod">
+<option>bKash</option>
+<option>Nagad</option>
+</select>
+
+<label>Sender Number</label>
+<input id="activationSender" placeholder="Payment sender number">
+
+<label>Transaction ID</label>
+<input id="activationTrx" placeholder="Transaction ID">
+
+<button onclick="submitIDActivation()">
+💳 SUBMIT ACTIVATION
+</button>
+
+</div>
+
+<button class="secondary" onclick="showPage('dashboard')">
+← BACK
+</button>
+</section>
+
+
+<!-- PROGRAM -->
+<section id="program" class="page">
+<h2 class="title animate" id="programTitle">PROGRAM</h2>
+
+<div class="card" id="programBox"></div>
+
+<button class="secondary" onclick="showPage('dashboard')">
+← BACK
+</button>
+</section>
+
+
+<!-- ACTIVITY -->
+<section id="activity" class="page">
+<h2 class="title animate" id="activityTitle">🎬 ACTIVITY</h2>
+
+<div class="card" style="text-align:center">
+
+<div class="badge">ACTIVE PROGRAM</div>
+
+<div class="progress">
+ <div id="activityProgress"></div>
+</div>
+
+<div id="activityCount">0 / 12</div>
+
+<div class="timer" id="timer">19</div>
+
+<p id="activityText">Video / Ad Activity</p>
+
+<button id="activityButton" onclick="startActivity()">
+▶ START ACTIVITY
+</button>
+
+</div>
+
+<button class="secondary" onclick="showPage('dashboard')">
+← BACK
+</button>
+</section>
+
+
+<!-- WALLET -->
+<section id="wallet" class="page">
+<h2 class="title animate">💰 WALLET</h2>
+
+<div class="card">
+
+<div class="row">
+ <span>Current Balance</span>
+ <b id="walletBalance">৳000</b>
+</div>
+
+<div class="row">
+ <span>Total Earnings</span>
+ <b id="walletEarnings">৳000</b>
+</div>
+
+</div>
+
+<button onclick="showPage('withdraw')">
+💸 WITHDRAW
+</button>
+
+<button class="secondary" onclick="showPage('history')">
+📜 TRANSACTION HISTORY
+</button>
+
+</section>
+
+
+<!-- WITHDRAW -->
+<section id="withdraw" class="page">
+<h2 class="title animate">💸 WITHDRAWAL</h2>
+
+<div class="card">
+
+<div class="notice">
+VERIFIED DIRECT REFERRALS:
+<b id="verifiedRefs">0/10</b>
+</div>
+
+<div id="withdrawNotice" class="notice red">
+🔒 WITHDRAW LOCKED
+<br>
+Minimum 10 verified direct referrals required.
+</div>
+
+<label>Amount</label>
+<input id="withdrawValue" type="number" placeholder="৳ Amount">
+
+<label>Payment Method</label>
+<select id="withdrawMethod">
+<option>bKash</option>
+<option>Nagad</option>
+</select>
+
+<label>Receiving Number</label>
+<input id="withdrawNumber" placeholder="01XXXXXXXXX">
+
+<button onclick="requestWithdraw()">
+💸 SUBMIT WITHDRAWAL
+</button>
+
+</div>
+
+<button class="secondary" onclick="showPage('profile')">
+← BACK
+</button>
+</section>
+
+
+<!-- TEAM -->
+<section id="team" class="page">
+<h2 class="title animate">👥 MY TEAM</h2>
+
+<div class="card">
+
+<div class="row">
+ <span>Direct Partners</span>
+ <b id="directTeam">000</b>
+</div>
+
+<div class="row">
+ <span>Total Team</span>
+ <b id="allTeam">000</b>
+</div>
+
+</div>
+
+<div id="teamList"></div>
+
+<button class="secondary" onclick="showPage('profile')">
+← BACK
+</button>
+</section>
+
+
+<!-- HISTORY -->
+<section id="history" class="page">
+<h2 class="title animate">📜 HISTORY</h2>
+
+<div id="historyList"></div>
+
+<button class="secondary" onclick="showPage('dashboard')">
+← BACK
+</button>
+</section>
+
+
+<!-- NOTIFICATIONS -->
+<section id="notifications" class="page">
+<h2 class="title animate">🔔 NOTIFICATIONS</h2>
+
+<div id="notificationList"></div>
+
+<button class="secondary" onclick="showPage('dashboard')">
+← BACK
+</button>
+</section>
+
+
+<!-- SETTINGS -->
+<section id="settings" class="page">
+<h2 class="title animate">⚙️ SETTINGS</h2>
+
+<div class="card">
+
+<label>🖼️ Profile Picture</label>
+<input type="file" id="photoInput" accept="image/*">
+
+<label>👤 Profile Name</label>
+<input id="settingName" placeholder="Enter your name">
+
+<button onclick="saveSettings()">
+💾 SAVE SETTINGS
+</button>
+
+<div class="row">
+ <span>INNOVA ID</span>
+ <b id="settingId">000</b>
+</div>
+
+<div class="row">
+ <span>STATUS</span>
+ <b id="settingStatus">🔴 INACTIVE</b>
+</div>
+
+</div>
+
+<button class="secondary" onclick="showPage('profile')">
+← BACK
+</button>
+</section>
+
+
+<!-- ADMIN -->
+<section id="admin" class="page">
+<h2 class="title animate">👑 SUPER ADMIN PANEL</h2>
+
+<div class="card">
+<h3>📊 OVERVIEW</h3>
+
+<div class="row">
+ <span>👥 Total Partners</span>
+ <b id="adminPartners">000</b>
+</div>
+
+<div class="row">
+ <span>📝 Total Joining</span>
+ <b id="adminJoining">000</b>
+</div>
+
+<div class="row">
+ <span>💰 Total Earnings</span>
+ <b id="adminEarnings">৳000</b>
+</div>
+
+</div>
+
+<div class="card">
+<h3>💳 ACTIVATION REQUESTS</h3>
+<div id="adminActivation"></div>
+</div>
+
+<div class="card">
+<h3>📦 PROGRAM REQUESTS</h3>
+<div id="adminPrograms"></div>
+</div>
+
+<div class="card">
+<h3>💸 WITHDRAWAL REQUESTS</h3>
+<div id="adminWithdrawals"></div>
+</div>
+
+<div class="card">
+<h3>👥 ALL USERS</h3>
+<div id="adminUsers"></div>
+</div>
+
+<div class="card">
+<h3>🌳 REFERRAL / TEAM</h3>
+<p>All referral relationships are shown from registered demo accounts.</p>
+</div>
+
+<div class="card">
+<h3>📦 PROGRAMS</h3>
+<p>8 Programs × 12 Activities</p>
+</div>
+
+<div class="card">
+<h3>🔔 NOTIFICATIONS</h3>
+<p>System notification records.</p>
+</div>
+
+<div class="card">
+<h3>📝 SYSTEM HISTORY</h3>
+<p>Account and transaction records.</p>
+</div>
+
+<button class="secondary" onclick="showPage('dashboard')">
+← BACK
+</button>
+
+</section>
+
+</main>
+
+
+<script>
+
+/* =========================================================
+   FRESH VERSION
+   Old INNOVA demo storage is NOT USED.
+========================================================= */
+
+const DB="INNOVA_GLOBAL_FRESH_2026_V1";
+const SESSION="INNOVA_GLOBAL_SESSION_2026_V1";
+const HISTORY="INNOVA_GLOBAL_HISTORY_2026_V1";
+const NOTIFY="INNOVA_GLOBAL_NOTIFY_2026_V1";
+const REQUESTS="INNOVA_GLOBAL_REQUESTS_2026_V1";
+const WITHDRAWALS="INNOVA_GLOBAL_WITHDRAWALS_2026_V1";
+
+const PAYMENT_NUMBER="01313213083";
+
+
+/* =========================================================
+   PROGRAMS
+========================================================= */
+
+const programs=[
+ {name:"INNOVA STARTER",price:100,reward:50},
+ {name:"INNOVA BASIC",price:200,reward:100},
+ {name:"INNOVA STANDARD",price:300,reward:150},
+ {name:"INNOVA PREMIUM",price:400,reward:200},
+ {name:"INNOVA ADVANCED",price:500,reward:250},
+ {name:"INNOVA PRO",price:600,reward:300},
+ {name:"INNOVA ELITE",price:700,reward:350},
+ {name:"INNOVA VIP",price:800,reward:400}
+];
+
+let selectedProgram=0;
+let activityNo=0;
+let timer=19;
+let timerInterval=null;
+
+
+/* =========================================================
+   STORAGE
+========================================================= */
+
+function users(){
+ return JSON.parse(localStorage.getItem(DB)||"[]");
+}
+
+function saveUsers(data){
+ localStorage.setItem(DB,JSON.stringify(data));
+}
+
+function session(){
+ const id=localStorage.getItem(SESSION);
+ return users().find(u=>u.id===id);
+}
+
+function saveUser(user){
+ const data=users();
+ const index=data.findIndex(u=>u.id===user.id);
+ if(index!==-1)data[index]=user;
+ saveUsers(data);
+}
+
+function history(){
+ return JSON.parse(localStorage.getItem(HISTORY)||"[]");
+}
+
+function notify(){
+ return JSON.parse(localStorage.getItem(NOTIFY)||"[]");
+}
+
+function requests(){
+ return JSON.parse(localStorage.getItem(REQUESTS)||"[]");
+}
+
+function withdrawals(){
+ return JSON.parse(localStorage.getItem(WITHDRAWALS)||"[]");
+}
+
+function addHistory(text){
+ let data=history();
+ data.unshift({
+  text:text,
+  time:new Date().toLocaleString()
+ });
+ localStorage.setItem(HISTORY,JSON.stringify(data));
+}
+
+function addNotification(text){
+ let data=notify();
+ data.unshift({
+  text:text,
+  time:new Date().toLocaleString()
+ });
+ localStorage.setItem(NOTIFY,JSON.stringify(data));
+}
+
+
+/* =========================================================
+   PAGE SYSTEM
+========================================================= */
+
+function showPage(id){
+
+ document.querySelectorAll(".page")
+ .forEach(x=>x.classList.remove("active"));
+
+ const page=document.getElementById(id);
+
+ if(page)page.classList.add("active");
+
+ const logged=!!session();
+
+ document.getElementById("header").style.display=
+   logged &&
+   id!=="welcome" &&
+   id!=="login" &&
+   id!=="register"
+   ?"flex":"none";
+
+ if(logged)updateAll();
+
+ window.scrollTo(0,0);
+}
+
+function go(id){
+ showPage(id);
+ document.getElementById("menu").classList.remove("open");
+}
+
+function toggleMenu(){
+ document.getElementById("menu").classList.toggle("open");
+}
+
+
+/* =========================================================
+   ID SYSTEM
+========================================================= */
+
+function nextID(){
+
+ const data=users();
+
+ if(data.length===0)return "001";
+
+ const numbers=data.map(u=>parseInt(u.id));
+ const max=Math.max(...numbers);
+
+ return String(max+1).padStart(3,"0");
+}
+
+function normalizeID(value){
+
+ value=String(value||"").trim();
+
+ if(/^\d+$/.test(value))
+ return value.padStart(3,"0");
+
+ return value;
+}
+
+
+/* =========================================================
+   REGISTRATION
+========================================================= */
+
+function registerUser(){
+
+ const name=document.getElementById("regName").value.trim();
+ const mobile=document.getElementById("regMobile").value.trim();
+ const password=document.getElementById("regPassword").value;
+ const referralInput=document.getElementById("regReferral").value.trim();
+
+ if(!name||!mobile||!password){
+  alert("সব তথ্য পূরণ করুন।");
+  return;
+ }
+
+ let data=users();
+
+ if(data.some(u=>u.mobile===mobile)){
+  alert("এই Mobile Number ইতিমধ্যে ব্যবহার করা হয়েছে।");
+  return;
+ }
+
+ let referral="NONE";
+
+ /* FIRST ACCOUNT = 001 = NO REFERRAL */
+
+ if(data.length===0){
+
+  referral="NONE";
+
+ }else{
+
+  referral=normalizeID(referralInput);
+
+  if(!referral){
+   alert("ID 002 থেকে Referral ID বাধ্যতামূলক।");
+   return;
+  }
+
+  const refUser=data.find(u=>u.id===referral);
+
+  if(!refUser){
+   alert("Valid existing Referral ID দিন।");
+   return;
+  }
+ }
+
+ const id=nextID();
+
+ const newUser={
+  id:id,
+  name:name,
+  mobile:mobile,
+  password:password,
+  upline:referral,
+  role:id==="001"?"SUPER_ADMIN":"USER",
+
+  status:id==="001"?"ACTIVE":"INACTIVE",
+
+  joinedAt:new Date().toISOString(),
+
+  balance:0,
+  earnings:0,
+  withdrawn:0,
+
+  programs:programs.map((p,index)=>({
+   active:id==="001",
+   progress:0,
+   pending:false
+  }))
+ };
+
+ data.push(newUser);
+ saveUsers(data);
+
+ addHistory("Account created — INNOVA ID "+id);
+ addNotification("Welcome to INNOVA.GLOBAL. Your ID is "+id);
+
+ localStorage.setItem(SESSION,id);
+
+ alert(
+  "Account created successfully!\n\n"+
+  "Your INNOVA ID: "+id+
+  "\nUpline ID: "+referral
+ );
+
+ showPage("profile");
+}
+
+
+/* =========================================================
+   LOGIN
+========================================================= */
+
+function loginUser(){
+
+ const key=document.getElementById("loginKey").value.trim();
+ const password=document.getElementById("loginPassword").value;
+
+ const id=normalizeID(key);
+
+ const user=users().find(u=>
+  (u.id===id||u.mobile===key)&&
+  u.password===password
+ );
+
+ if(!user){
+  alert("INNOVA ID/Mobile অথবা Password ভুল।");
+  return;
+ }
+
+ localStorage.setItem(SESSION,user.id);
+
+ showPage("profile");
+}
+
+
+/* =========================================================
+   LOGOUT
+========================================================= */
+
+function logout(){
+
+ localStorage.removeItem(SESSION);
+
+ document.getElementById("menu").classList.remove("open");
+
+ showPage("welcome");
+}
+
+
+/* =========================================================
+   DOWNLINE
+========================================================= */
+
+function directPartners(id){
+
+ return users().filter(u=>u.upline===id);
+}
+
+function allTeam(id){
+
+ const result=[];
+ const queue=[id];
+
+ while(queue.length){
+
+  const parent=queue.shift();
+
+  users()
+  .filter(u=>u.upline===parent)
+  .forEach(u=>{
+   result.push(u);
+   queue.push(u.id);
+  });
+
+ }
+
+ return result;
+}
+
+
+/* =========================================================
+   UPDATE ALL
+========================================================= */
+
+function updateAll(){
+
+ const u=session();
+
+ if(!u)return;
+
+ document.getElementById("userName").textContent=u.name;
+ document.getElementById("userId").textContent=u.id;
+ document.getElementById("userUpline").textContent=u.upline;
+
+ document.getElementById("moreId").textContent=u.id;
+ document.getElementById("moreUpline").textContent=u.upline;
+
+ document.getElementById("dashId").textContent=u.id;
+ document.getElementById("dashUpline").textContent=u.upline;
+
+ document.getElementById("settingId").textContent=u.id;
+
+ const status=u.status==="ACTIVE"
+ ?'<span class="green">🟢 ACTIVE</span>'
+ :'<span class="red">🔴 INACTIVE</span>';
+
+ document.getElementById("userStatus").innerHTML=status;
+ document.getElementById("dashStatus").innerHTML=status;
+ document.getElementById("settingStatus").innerHTML=status;
+
+ if(u.photo)
+ document.getElementById("avatar").src=u.photo;
+
+ const direct=directPartners(u.id);
+ const team=allTeam(u.id);
+
+ document.getElementById("partners").textContent=
+ String(direct.length).padStart(3,"0");
+
+ document.getElementById("teamCount").textContent=
+ String(team.length).padStart(3,"0");
+
+ document.getElementById("earnings").textContent=
+ "৳"+Number(u.earnings||0).toFixed(2);
+
+ document.getElementById("totalEarning").textContent=
+ "৳"+Number(u.earnings||0).toFixed(2);
+
+ document.getElementById("withdrawAmountProfile").textContent=
+ "৳"+Number(u.withdrawn||0).toFixed(2);
+
+ document.getElementById("walletBalance").textContent=
+ "৳"+Number(u.balance||0).toFixed(2);
+
+ document.getElementById("walletEarnings").textContent=
+ "৳"+Number(u.earnings||0).toFixed(2);
+
+ document.getElementById("directTeam").textContent=direct.length;
+ document.getElementById("allTeam").textContent=team.length;
+
+ document.getElementById("refLink").value=
+ location.origin+
+ location.pathname+
+ "?ref="+u.id;
+
+ document.getElementById("settingName").value=u.name;
+
+ const date=new Date(u.joinedAt);
+
+ document.getElementById("joinTime")
+ .textContent=date.toLocaleTimeString();
+
+ const days=Math.floor(
+  (Date.now()-date.getTime())/
+  (1000*60*60*24)
+ );
+
+ document.getElementById("duration").textContent=
+ days+" Days";
+
+ document.getElementById("adminButton").style.display=
+ u.role==="SUPER_ADMIN"?"block":"none";
+
+ renderPrograms();
+ renderTeam();
+ renderHistory();
+ renderNotifications();
+ renderAdmin();
+ renderActivation();
+ updateWithdraw();
+
+}
+
+
+/* =========================================================
+   ID ACTIVATION
+========================================================= */
+
+function renderActivation(){
+
+ const u=session();
+
+ if(!u)return;
+
+ const box=document.getElementById("activationBox");
+
+ if(u.id==="001"){
+
+  box.innerHTML=`
+   <div class="notice green">
+    🟢 ID 001 is already ACTIVE.
+   </div>
+  `;
+
+ }else if(u.status==="ACTIVE"){
+
+  box.innerHTML=`
+   <div class="notice green">
+    🟢 ID ACTIVATION COMPLETED.
+   </div>
+  `;
+
+ }else{
+
+  box.innerHTML=`
+   <div class="notice red">
+    🔴 Your ID is currently INACTIVE.
+   </div>
+
+   <button onclick="showPage('activation')">
+    🔐 START ACTIVATION — ৳100
+   </button>
+  `;
+ }
+}
+
+function submitIDActivation(){
+
+ const sender=
+ document.getElementById("activationSender").value.trim();
+
+ const trx=
+ document.getElementById("activationTrx").value.trim();
+
+ const method=
+ document.getElementById("activationMethod").value;
+
+ if(!sender||!trx){
+  alert("Sender Number এবং Transaction ID দিন।");
+  return;
+ }
+
+ const u=session();
+
+ let data=requests();
+
+ data.push({
+  type:"ID_ACTIVATION",
+  userId:u.id,
+  amount:100,
+  method:method,
+  sender:sender,
+  transaction:trx,
+  status:"PENDING",
+  time:new Date().toLocaleString()
+ });
+
+ localStorage.setItem(REQUESTS,JSON.stringify(data));
+
+ addHistory(
+  "ID Activation Request — "+u.id+" — ৳100"
+ );
+
+ addNotification(
+  "Your ID activation request is pending admin verification."
+ );
+
+ alert(
+  "Activation request submitted.\n"+
+  "Status: PENDING"
+ );
+
+ showPage("dashboard");
+}
+
+
+/* =========================================================
+   PROGRAMS
+========================================================= */
+
+function renderPrograms(){
+
+ const u=session();
+
+ if(!u)return;
+
+ const box=document.getElementById("programList");
+
+ box.innerHTML="";
+
+ programs.forEach((p,i)=>{
+
+  const info=u.programs[i]||{
+   active:false,
+   progress:0
+  };
+
+  const status=info.active
+   ?'<span class="green">🟢 ACTIVE</span>'
+   :'<span class="red">🔴 INACTIVE</span>';
+
+  box.innerHTML+=`
+
+   <div class="card program">
+
+    <h3 class="animate">
+     🌐 ${p.name}
+    </h3>
+
+    <div class="row">
+     <span>💰 Package Price</span>
+     <b>৳${p.price}</b>
+    </div>
+
+    <div class="row">
+     <span>🎬 Activities</span>
+     <b>12</b>
+    </div>
+
+    <div class="row">
+     <span>💵 Configured Reward</span>
+     <b>৳${p.reward}</b>
+    </div>
+
+    <div style="margin-top:8px">
+     ${status}
+    </div>
+
+    <div class="progress">
+     <div style="width:${info.progress/12*100}%"></div>
+    </div>
+
+    <div>
+     Activity Progress:
+     <b>${info.progress}/12</b>
+    </div>
+
+    <button onclick="openProgram(${i})">
+     OPEN PROGRAM
+    </button>
+
+   </div>
+  `;
+ });
+}
+
+
+/* =========================================================
+   OPEN PROGRAM
+========================================================= */
+
+function openProgram(index){
+
+ selectedProgram=index;
+
+ const u=session();
+ const p=programs[index];
+ const info=u.programs[index];
+
+ document.getElementById("programTitle").textContent=
+ "🚀 "+p.name;
+
+ if(info.active){
+
+  document.getElementById("programBox").innerHTML=`
+
+   <div class="row">
+    <span>STATUS</span>
+    <b class="green">🟢 ACTIVE PROGRAM</b>
+   </div>
+
+   <div class="row">
+    <span>ACTIVITY</span>
+    <b>${info.progress}/12</b>
+   </div>
+
+   <button onclick="startProgram()">
+    ▶ START ACTIVE
+   </button>
+
+  `;
+
+ }else{
+
+  document.getElementById("programBox").innerHTML=`
+
+   <div class="notice red">
+    🔴 PROGRAM INACTIVE
+   </div>
+
+   <div class="row">
+    <span>Package</span>
+    <b>${p.name}</b>
+   </div>
+
+   <div class="row">
+    <span>Activation Fee</span>
+    <b>৳${p.price}</b>
+   </div>
+
+   <p style="margin:12px 0">
+    💳 bKash / Nagad:
+    <b>${PAYMENT_NUMBER}</b>
+   </p>
+
+   <label>Sender Number</label>
+   <input id="programSender"
+   placeholder="Payment sender number">
+
+   <label>Transaction ID</label>
+   <input id="programTrx"
+   placeholder="Transaction ID">
+
+   <button onclick="submitProgramPayment()">
+    💳 SUBMIT PAYMENT
+   </button>
+
+  `;
+ }
+
+ showPage("program");
+}
+
+
+/* =========================================================
+   PROGRAM PAYMENT
+========================================================= */
+
+function submitProgramPayment(){
+
+ const sender=
+ document.getElementById("programSender").value.trim();
+
+ const trx=
+ document.getElementById("programTrx").value.trim();
+
+ if(!sender||!trx){
+  alert("Sender Number এবং Transaction ID দিন।");
+  return;
+ }
+
+ const u=session();
+ const p=programs[selectedProgram];
+
+ let data=requests();
+
+ data.push({
+  type:"PROGRAM",
+  userId:u.id,
+  program:selectedProgram,
+  programName:p.name,
+  amount:p.price,
+  sender:sender,
+  transaction:trx,
+  status:"PENDING",
+  time:new Date().toLocaleString()
+ });
+
+ localStorage.setItem(REQUESTS,JSON.stringify(data));
+
+ u.programs[selectedProgram].pending=true;
+ saveUser(u);
+
+ addHistory(
+  p.name+" activation request submitted."
+ );
+
+ addNotification(
+  p.name+" payment is pending admin verification."
+ );
+
+ alert("Program activation request submitted.");
+
+ showPage("program");
+}
+
+
+/* =========================================================
+   ACTIVITY
+========================================================= */
+
+function startProgram(){
+
+ const u=session();
+
+ if(!u.programs[selectedProgram].active){
+  alert("Program এখনো Active হয়নি।");
+  return;
+ }
+
+ activityNo=u.programs[selectedProgram].progress;
+
+ if(activityNo>=12){
+  alert("এই Program-এর 12টি Activity already completed.");
+  return;
+ }
+
+ timer=19;
+
+ document.getElementById("activityTitle").textContent=
+ "🎬 "+programs[selectedProgram].name;
+
+ updateActivity();
+
+ showPage("activity");
+}
+
+function updateActivity(){
+
+ document.getElementById("activityCount").textContent=
+ activityNo+" / 12";
+
+ document.getElementById("activityProgress").style.width=
+ (activityNo/12*100)+"%";
+
+ document.getElementById("activityText").textContent=
+ "Video / Ad Activity "+(activityNo+1);
+
+ document.getElementById("timer").textContent=timer;
+}
+
+function startActivity(){
+
+ if(timerInterval)return;
+
+ timer=19;
+
+ document.getElementById("activityButton").disabled=true;
+ document.getElementById("activityButton").textContent=
+ "⏳ PROCESSING...";
+
+ updateActivity();
+
+ timerInterval=setInterval(()=>{
+
+  timer--;
+
+  document.getElementById("timer").textContent=timer;
+
+  if(timer<=0){
+
+   clearInterval(timerInterval);
+   timerInterval=null;
+
+   completeActivity();
+  }
+
+ },1000);
+}
+
+function completeActivity(){
+
+ const u=session();
+
+ activityNo++;
+
+ u.programs[selectedProgram].progress=activityNo;
+
+ saveUser(u);
+
+ if(activityNo>=12){
+
+  addHistory(
+   programs[selectedProgram].name+
+   " — 12/12 Activities Completed"
+  );
+
+  addNotification(
+   programs[selectedProgram].name+
+   " — 12/12 Activities Completed."
+  );
+
+  alert("🎉 12 / 12 Completed!");
+
+  showPage("dashboard");
+
+ }else{
+
+  timer=19;
+
+  document.getElementById("activityButton").disabled=false;
+
+  document.getElementById("activityButton").textContent=
+   "▶ START ACTIVITY";
+
+  updateActivity();
+ }
+}
+
+
+/* =========================================================
+   WITHDRAW
+========================================================= */
+
+function updateWithdraw(){
+
+ const u=session();
+
+ if(!u)return;
+
+ const direct=directPartners(u.id);
+
+ document.getElementById("verifiedRefs").textContent=
+ direct.length+"/10";
+
+ const notice=document.getElementById("withdrawNotice");
+
+ if(direct.length>=10){
+
+  notice.className="notice green";
+  notice.innerHTML=
+   "🟢 WITHDRAW AVAILABLE";
+
+ }else{
+
+  notice.className="notice red";
+  notice.innerHTML=
+   "🔒 WITHDRAW LOCKED<br>"+
+   "Minimum 10 verified direct referrals required.";
+ }
+}
+
+function requestWithdraw(){
+
+ const u=session();
+
+ const direct=directPartners(u.id);
+
+ if(direct.length<10){
+
+  alert(
+   "Withdrawal Locked.\n"+
+   "10 verified direct referrals required."
+  );
+
+  return;
+ }
+
+ const amount=
+ Number(document.getElementById("withdrawValue").value);
+
+ const number=
+ document.getElementById("withdrawNumber").value.trim();
+
+ const method=
+ document.getElementById("withdrawMethod").value;
+
+ if(!amount||!number){
+
+  alert("সব তথ্য পূরণ করুন।");
+  return;
+ }
+
+ let data=withdrawals();
+
+ data.unshift({
+  userId:u.id,
+  amount:amount,
+  method:method,
+  number:number,
+  status:"PENDING",
+  time:new Date().toLocaleString()
+ });
+
+ localStorage.setItem(WITHDRAWALS,JSON.stringify(data));
+
+ addHistory(
+  "Withdrawal Request — ৳"+amount
+ );
+
+ addNotification(
+  "Your withdrawal request is pending admin review."
+ );
+
+ alert("Withdrawal request submitted.");
+
+ document.getElementById("withdrawValue").value="";
+ document.getElementById("withdrawNumber").value="";
+}
+
+
+/* =========================================================
+   TEAM
+========================================================= */
+
+function renderTeam(){
+
+ const u=session();
+
+ if(!u)return;
+
+ const team=allTeam(u.id);
+
+ const box=document.getElementById("teamList");
+
+ if(!team.length){
+
+  box.innerHTML=
+   '<div class="card">No team members yet.</div>';
+
+  return;
+ }
+
+ box.innerHTML=team.map(member=>`
+
+  <div class="card">
+
+   <div class="row">
+    <span>🆔 INNOVA ID</span>
+    <b>${member.id}</b>
+   </div>
+
+   <div class="row">
+    <span>👤 Name</span>
+    <b>${member.name}</b>
+   </div>
+
+   <div class="row">
+    <span>🔗 UPLINE</span>
+    <b>${member.upline}</b>
+   </div>
+
+   <div class="row">
+    <span>STATUS</span>
+    <b>${member.status}</b>
+   </div>
+
+  </div>
+
+ `).join("");
+}
+
+
+/* =========================================================
+   HISTORY
+========================================================= */
+
+function renderHistory(){
+
+ const box=document.getElementById("historyList");
+
+ const data=history();
+
+ if(!data.length){
+
+  box.innerHTML=
+   '<div class="card">No history yet.</div>';
+
+  return;
+ }
+
+ box.innerHTML=data.map(x=>`
+
+  <div class="card">
+   <div>📝 ${x.text}</div>
+   <div class="small">${x.time}</div>
+  </div>
+
+ `).join("");
+}
+
+
+/* =========================================================
+   NOTIFICATIONS
+========================================================= */
+
+function renderNotifications(){
+
+ const box=document.getElementById("notificationList");
+
+ const data=notify();
+
+ if(!data.length){
+
+  box.innerHTML=
+   '<div class="card">No notifications yet.</div>';
+
+  return;
+ }
+
+ box.innerHTML=data.map(x=>`
+
+  <div class="card">
+   <div>🔔 ${x.text}</div>
+   <div class="small">${x.time}</div>
+  </div>
+
+ `).join("");
+}
+
+
+/* =========================================================
+   SETTINGS
+========================================================= */
+
+function saveSettings(){
+
+ const u=session();
+
+ if(!u)return;
+
+ const name=
+ document.getElementById("settingName").value.trim();
+
+ if(name)u.name=name;
+
+ const file=
+ document.getElementById("photoInput").files[0];
+
+ if(file){
+
+  const reader=new FileReader();
+
+  reader.onload=function(e){
+
+   u.photo=e.target.result;
+
+   saveUser(u);
+
+   alert("Settings saved!");
+
+   updateAll();
+  };
+
+  reader.readAsDataURL(file);
+
+ }else{
+
+  saveUser(u);
+
+  alert("Settings saved!");
+
+  updateAll();
+ }
+}
+
+
+/* =========================================================
+   COPY REFERRAL
+========================================================= */
+
+function copyReferral(){
+
+ const input=document.getElementById("refLink");
+
+ navigator.clipboard.writeText(input.value)
+ .then(()=>{
+  alert("Referral Link copied!");
+ })
+ .catch(()=>{
+  input.select();
+  document.execCommand("copy");
+  alert("Referral Link copied!");
+ });
+}
+
+
+/* =========================================================
+   ADMIN
+========================================================= */
+
+function renderAdmin(){
+
+ const u=session();
+
+ if(!u||u.role!=="SUPER_ADMIN")return;
+
+ const data=users();
+
+ const totalPartners=
+ data.filter(x=>x.upline!=="NONE").length;
+
+ document.getElementById("adminPartners").textContent=
+ totalPartners;
+
+ document.getElementById("adminJoining").textContent=
+ data.length;
+
+ const totalEarnings=data.reduce(
+  (sum,x)=>sum+Number(x.earnings||0),0
+ );
+
+ document.getElementById("adminEarnings").textContent=
+ "৳"+totalEarnings.toFixed(2);
+
+
+ /* USERS */
+
+ document.getElementById("adminUsers").innerHTML=
+ data.map(x=>`
+
+  <div class="notice">
+
+   <b>${x.id}</b> — ${x.name}
+
+   <br>
+   Upline: ${x.upline}
+
+   <br>
+   Status: ${x.status}
+
+  </div>
+
+ `).join("");
+
+
+ /* REQUESTS */
+
+ const req=requests();
+
+ const activation=req.filter(x=>x.type==="ID_ACTIVATION");
+ const prog=req.filter(x=>x.type==="PROGRAM");
+
+ document.getElementById("adminActivation").innerHTML=
+ activation.length
+ ?activation.map((x,i)=>`
+
+  <div class="notice">
+
+   <b>User ID:</b> ${x.userId}<br>
+   <b>Amount:</b> ৳${x.amount}<br>
+   <b>Method:</b> ${x.method}<br>
+   <b>Sender:</b> ${x.sender}<br>
+   <b>Transaction:</b> ${x.transaction}<br>
+   <b>Status:</b> ${x.status}<br>
+   <span class="small">${x.time}</span>
+
+   ${
+    x.status==="PENDING"
+    ?`
+     <button onclick="approveID(${i})">
+      APPROVE
+     </button>
+
+     <button onclick="rejectRequest(${i})">
+      REJECT
+     </button>
+    `
+    :""
+   }
+
+  </div>
+
+ `).join("")
+ :'<div class="notice">No activation requests.</div>';
+
+
+ document.getElementById("adminPrograms").innerHTML=
+ prog.length
+ ?prog.map((x,i)=>`
+
+  <div class="notice">
+
+   <b>User ID:</b> ${x.userId}<br>
+   <b>Program:</b> ${x.programName}<br>
+   <b>Amount:</b> ৳${x.amount}<br>
+   <b>Sender:</b> ${x.sender}<br>
+   <b>Transaction:</b> ${x.transaction}<br>
+   <b>Status:</b> ${x.status}
+
+   ${
+    x.status==="PENDING"
+    ?`
+     <button onclick="approveProgram(${i})">
+      APPROVE
+     </button>
+
+     <button onclick="rejectProgram(${i})">
+      REJECT
+     </button>
+    `
+    :""
+   }
+
+  </div>
+
+ `).join("")
+ :'<div class="notice">No program requests.</div>';
+
+
+ /* WITHDRAWALS */
+
+ const wd=withdrawals();
+
+ document.getElementById("adminWithdrawals").innerHTML=
+ wd.length
+ ?wd.map((x,i)=>`
+
+  <div class="notice">
+
+   <b>User ID:</b> ${x.userId}<br>
+   <b>Amount:</b> ৳${x.amount}<br>
+   <b>Method:</b> ${x.method}<br>
+   <b>Number:</b> ${x.number}<br>
+   <b>Status:</b> ${x.status}<br>
+   <span class="small">${x.time}</span>
+
+   ${
+    x.status==="PENDING"
+    ?`
+     <button onclick="approveWithdraw(${i})">
+      APPROVE
+     </button>
+
+     <button onclick="rejectWithdraw(${i})">
+      REJECT
+     </button>
+    `
+    :""
+   }
+
+  </div>
+
+ `).join("")
+ :'<div class="notice">No withdrawal requests.</div>';
+}
+
+
+/* =========================================================
+   ADMIN — ID APPROVAL
+========================================================= */
+
+function approveID(index){
+
+ let data=requests();
+
+ const item=data.filter(
+  x=>x.type==="ID_ACTIVATION"
+ )[index];
+
+ if(!item)return;
+
+ item.status="APPROVED";
+
+ const all=users();
+
+ const user=all.find(
+  x=>x.id===item.userId
+ );
+
+ if(user){
+
+  user.status="ACTIVE";
+
+  saveUsers(all);
+
+  addNotification(
+   "Your ID activation has been approved."
+  );
+ }
+
+ localStorage.setItem(
+  REQUESTS,
+  JSON.stringify(data)
+ );
+
+ alert("ID Activation Approved.");
+
+ renderAdmin();
+ updateAll();
+}
+
+function rejectRequest(index){
+
+ let data=requests();
+
+ const item=data.filter(
+  x=>x.type==="ID_ACTIVATION"
+ )[index];
+
+ if(!item)return;
+
+ item.status="REJECTED";
+
+ localStorage.setItem(
+  REQUESTS,
+  JSON.stringify(data)
+ );
+
+ alert("Activation request rejected.");
+
+ renderAdmin();
+}
+
+
+/* =========================================================
+   ADMIN — PROGRAM APPROVAL
+========================================================= */
+
+function approveProgram(index){
+
+ let data=requests();
+
+ const item=data.filter(
+  x=>x.type==="PROGRAM"
+ )[index];
+
+ if(!item)return;
+
+ item.status="APPROVED";
+
+ const all=users();
+
+ const user=all.find(
+  x=>x.id===item.userId
+ );
+
+ if(user){
+
+  user.programs[item.program].active=true;
+  user.programs[item.program].pending=false;
+
+  saveUsers(all);
+
+  addNotification(
+   item.programName+
+   " has been activated."
+  );
+ }
+
+ localStorage.setItem(
+  REQUESTS,
+  JSON.stringify(data)
+ );
+
+ alert("Program Activated.");
+
+ renderAdmin();
+ updateAll();
+}
+
+function rejectProgram(index){
+
+ let data=requests();
+
+ const item=data.filter(
+  x=>x.type==="PROGRAM"
+ )[index];
+
+ if(!item)return;
+
+ item.status="REJECTED";
+
+ localStorage.setItem(
+  REQUESTS,
+  JSON.stringify(data)
+ );
+
+ alert("Program request rejected.");
+
+ renderAdmin();
+}
+
+
+/* =========================================================
+   ADMIN — WITHDRAWAL
+========================================================= */
+
+function approveWithdraw(index){
+
+ let data=withdrawals();
+
+ if(!data[index])return;
+
+ const item=data[index];
+
+ item.status="APPROVED";
+
+ const all=users();
+
+ const user=all.find(
+  x=>x.id===item.userId
+ );
+
+ if(user){
+
+  user.withdrawn=
+   Number(user.withdrawn||0)+
+   Number(item.amount);
+
+  user.balance=Math.max(
+   0,
+   Number(user.balance||0)-
+   Number(item.amount)
+  );
+
+  saveUsers(all);
+
+  addNotification(
+   "Your withdrawal has been approved."
+  );
+ }
+
+ localStorage.setItem(
+  WITHDRAWALS,
+  JSON.stringify(data)
+ );
+
+ alert("Withdrawal Approved.");
+
+ renderAdmin();
+ updateAll();
+}
+
+function rejectWithdraw(index){
+
+ let data=withdrawals();
+
+ if(!data[index])return;
+
+ data[index].status="REJECTED";
+
+ localStorage.setItem(
+  WITHDRAWALS,
+  JSON.stringify(data)
+ );
+
+ alert("Withdrawal Rejected.");
+
+ renderAdmin();
+}
+
+
+/* =========================================================
+   WELCOME STATS
+========================================================= */
+
+function updateWelcome(){
+
+ /*
+  No fake/random numbers.
+  This fresh demo intentionally starts at zero.
+  Production version should read verified
+  statistics from the online database.
+ */
+
+ document.getElementById("wPartners").textContent="000";
+ document.getElementById("wEarnings").textContent="৳000";
+ document.getElementById("wJoining").textContent="000";
+ document.getElementById("wToday").textContent="000";
+}
+
+
+/* =========================================================
+   REFERRAL URL
+========================================================= */
+
+(function(){
+
+ const params=
+ new URLSearchParams(location.search);
+
+ const ref=params.get("ref");
+
+ if(ref){
+
+  const field=
+  document.getElementById("regReferral");
+
+  if(field)
+  field.value=normalizeID(ref);
+ }
+
+})();
+
+
+/* =========================================================
+   15 SECOND REFRESH
+========================================================= */
+
+updateWelcome();
+
+setInterval(()=>{
+ updateWelcome();
+
+ if(session())
+ updateAll();
+
+},15000);
+
+
+/* =========================================================
+   STARTUP
+========================================================= */
+
+if(session()){
+ updateAll();
+}
+
+</script>
+
+</body>
+</html>
